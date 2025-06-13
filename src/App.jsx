@@ -107,10 +107,13 @@ function App() {
             disabled={(!hasPrev)}
             className="prev-btn"
           >
-            <img
-              src={leftArrow}
-              alt="This is an arrow that points to the left.">
-            </img>
+            {hasPrev &&
+              <img
+                src={leftArrow}
+                alt="This is an arrow that points to the left.">
+              </img>
+            }
+
           </button>
 
           <button
@@ -118,11 +121,13 @@ function App() {
             disabled={(!hasNext)}
             className="continue-btn"
           >
-            <img
-              src={rightArrow}
-              alt="This is an arrow that points to the right."
-            >
-            </img>
+            {hasNext &&
+              <img
+                src={rightArrow}
+                alt="This is an arrow that points to the right."
+              >
+              </img>
+            }
           </button>
         </div>
       </main>
