@@ -96,7 +96,8 @@ main > h3 {
 	text-align: center;
 }
 
-button {
+.prev-btn,
+.continue-btn {
 	cursor: pointer;
 	border: none;
 	background-color: transparent;
@@ -115,4 +116,13 @@ img {
 
 .question {
 	color: white;
+}
+
+label {
+	color: white;
+	font-weight: bold;
+}
+
+.error {
+	border: 2px solid red;
 }

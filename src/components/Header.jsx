@@ -1,4 +1,4 @@
-import { quiz } from "../data/quiz.js";
+import { quiz } from "../data/flaschards.js";
 
 
 //========================================================
