@@ -23,6 +23,7 @@ import leftArrow from "./assets/images/left-arrow.svg";
 //========================================================
 
 import rightArrow from "./assets/images/right-arrow.svg";
+import { Header } from "./components/Header.jsx";
 
 //========================================================
 
@@ -115,6 +116,7 @@ function App() {
   return (
 
     <main>
+      <Header></Header>
       <h3>
         Question {index + 1} of {numQuestions}
       </h3>
@@ -153,4 +155,4 @@ function App() {
   );
 } // App()
 
-export default App
+export { App };
