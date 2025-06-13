@@ -1,0 +1,118 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	/* background-color: #0a092d; */
+	background-image: url("../assets/images/Cobra_Kai_Background.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+	font-size: 1.3em;
+	margin-top: 2em;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	gap: 50px;
+}
+
+main > h3 {
+	color: white;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 60%;
+	height: 50vh;
+	border-radius: 100px;
+	padding: 2em 2em;
+	font-size: 3em;
+	position: relative;
+	cursor: pointer;
+	transform-style: preserve-3d;
+	perspective: 1000px;
+	transition: rotate 500ms linear;
+	background-color: transparent;
+}
+
+.card.show {
+	rotate: y 180deg;
+	/* transition: inherit; */
+}
+
+.card-front,
+.card-back {
+	display: grid;
+	position: absolute;
+	border: 5px solid #000000;
+	padding: 0.5em;
+	inset: 0;
+	place-content: center;
+	backface-visibility: hidden;
+	border-radius: 100px;
+}
+
+.card-back {
+	padding: 1em;
+}
+
+/* .card-front {
+	height: 100%;
+} */
+
+.card-front {
+	background-color: rgba(68, 65, 65, 0.307);
+	filter: blur(1.5px);
+}
+
+.card-back {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: aliceblue;
+	/* transform: rotateY(180deg); */
+	rotate: y 180deg;
+}
+
+#buttons {
+	display: flex;
+	flex-direction: row;
+	gap: 200px;
+}
+
+.answer {
+	text-align: center;
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	background-color: transparent;
+}
+
+.continue-btn > img,
+.prev-btn > img {
+	width: 200px;
+}
+
+img {
+	max-width: 85%;
+	min-width: 20%;
+	height: 80%;
+}
+
+.question {
+	color: white;
+}
