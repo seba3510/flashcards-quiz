@@ -6,7 +6,7 @@ import { quiz } from "./data/quiz.js";
 
 //========================================================
 
-import "./styles/style.css";
+import { Header } from "./components/Header.jsx";
 
 //========================================================
 
@@ -23,7 +23,10 @@ import leftArrow from "./assets/images/left-arrow.svg";
 //========================================================
 
 import rightArrow from "./assets/images/right-arrow.svg";
-import { Header } from "./components/Header.jsx";
+
+//========================================================
+
+import "./styles/style.css";
 
 //========================================================
 
@@ -35,8 +38,6 @@ function App() {
     setIndex
   ] =
     useState(0);
-
-  // quiz.sort();
 
   //=================================================================
 
@@ -52,14 +53,13 @@ function App() {
     (index > 0);
 
   let hasNext =
-    (index < numQuestions);
+    (index < numQuestions - 1);
 
   //=================================================================
 
   function handlePrevClick() {
 
-    hasPrev ? setIndex(index - 1)
-      : null;
+    setIndex(index - 1);
 
   } // handlePrevClick()
 
@@ -67,38 +67,9 @@ function App() {
 
   function handleNextClick() {
 
-    const randomIndex =
-      getRandomIndex();
-
-    setIndex(randomIndex);
+    setIndex(index + 1);
 
   } // handleNextClick()
-
-  //=================================================================
-
-  function getRandomIndex() {
-
-    const min = 0;
-
-    const max =
-      numQuestions - 1;
-
-    const minCeiled =
-      Math.ceil(min);
-
-    const maxFloored =
-      Math.floor(max);
-
-    const randomIndex =
-      Math.floor(
-        Math.random() *
-        (maxFloored - minCeiled + 1)
-        + minCeiled
-      );
-
-    return randomIndex;
-
-  } // getRandomIndex()
 
   //=================================================================
 
@@ -113,46 +84,55 @@ function App() {
 
   } // handleCardClick()
 
+  //=================================================================
+
   return (
 
-    <main>
-      <Header></Header>
-      <h3>
-        Question {index + 1} of {numQuestions}
-      </h3>
-      <div className="card" onClick={handleCardClick}>
-        <Question question={curr.question}></Question>
-        <Answer
-          answer={curr.answer}
-          image={curr.image}></Answer>
-      </div>
+    <>
+      <main>
+        <Header></Header>
+        <h3>
+          Question {index + 1} of {numQuestions}
+        </h3>
+        <div className="card" onClick={handleCardClick}>
+          <Question question={curr.question}></Question>
+          <Answer
+            answer={curr.answer}
+            image={curr.image}></Answer>
+        </div>
 
-      <div id="buttons">
-        <button
-          onClick={handlePrevClick}
-          disabled={(!hasPrev)}
-          className="prev-btn"
-        >
-          <img
-            src={leftArrow}
-            alt="This arrow points to the left."
+        <div id="buttons">
+          <button
+            onClick={handlePrevClick}
+            disabled={(!hasPrev)}
+            className="prev-btn"
           >
-          </img>
-        </button>
+            <img
+              src={leftArrow}
+              alt="This is an arrow that points to the left.">
+            </img>
+          </button>
 
-        <button
-          onClick={handleNextClick}
-          disabled={(!hasNext)}
-          className="continue-btn"
-        >
-          <img
-            src={rightArrow}
-            alt="This arrow is pointing to the right."></img>
-        </button>
-      </div>
-    </main>
+          <button
+            onClick={handleNextClick}
+            disabled={(!hasNext)}
+            className="continue-btn"
+          >
+            <img
+              src={rightArrow}
+              alt="This is an arrow that points to the right."
+            >
+            </img>
+          </button>
+        </div>
+      </main>
+
+    </>
 
   );
+
 } // App()
+
+//=================================================================
 
 export { App };
