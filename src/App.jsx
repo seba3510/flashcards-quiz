@@ -1,3 +1,4 @@
+/* eslint-disable no-unexpected-multiline */
 import { useState } from "react";
 
 //========================================================
@@ -40,6 +41,56 @@ function App() {
 
 	//=================================================================
 
+	const [
+		answer,
+		setAnswer
+	] =
+		useState("");
+
+	//=================================================================
+
+	const [
+		message,
+		setMessage
+	] =
+		useState("");
+
+	//=================================================================
+
+	const [
+		isError,
+		setIsError
+	] =
+		useState(false);
+
+	//=================================================================
+
+	const [
+		isFlipped,
+		setIsFlipped
+	] =
+		useState(false);
+
+	//=================================================================
+
+	const para =
+		document.querySelector
+			("form > p");
+
+	//=================================================================
+
+	const input =
+		document.querySelector
+			("input");
+
+	//=================================================================
+
+	const card =
+		document.querySelector
+			(".card");
+
+	//=================================================================
+
 	let flashcard =
 		flashcards[index];
 
@@ -56,11 +107,79 @@ function App() {
 
 	//=================================================================
 
-	const card =
-		document.querySelector
-			(".card");
+	function handleTextChange(event) {
 
-	//=================================================================
+		const value =
+			event.target.value;
+
+		setAnswer(value);
+
+		setMessage("");
+
+	} // handleTextChange()
+
+	//=============================================================
+
+	function submitForm(event) {
+
+		event.preventDefault();
+
+		const isAnswerPresent =
+			(answer != "");
+
+		if (!isAnswerPresent) {
+
+			setIsError(true);
+
+			input.classList.
+				toggle("error");
+
+			para.classList.toggle("error");
+
+			const error =
+				"Please answer the question!";
+
+			setMessage(error);
+
+			return;
+
+		} // if
+
+		const areAnswersEqual =
+			(answer === flashcard.answer);
+
+		if (!areAnswersEqual) {
+
+			setIsError(true);
+
+			const error =
+				"The answer is wrong!";
+
+			setMessage(error);
+
+			para.textContent = "";
+
+		} // if
+
+		else {
+
+			setIsError(false);
+
+			const msg =
+				"The answer is correct!";
+
+
+			setMessage(msg);
+
+			// card.classList.remove("show");
+
+			card.classList.toggle("show");
+
+		} // else
+
+	} // submitForm()
+
+	//=============================================================
 
 	function showPreviousQuestion() {
 
@@ -75,10 +194,28 @@ function App() {
 
 	function showNextQuestion() {
 
+		if (!isFlipped) {
+
+			setIsError(true);
+
+			const error =
+				"Flip the card before moving on to " +
+				"the next question.";
+
+			para.classList.toggle("error");
+
+			para.textContent =
+				error;
+
+
+		} // if
+
 		// card.classList.
 		// 	remove("show");
 
-		setIndex(index + 1);
+		// input.textContent = "";
+
+		// setIndex(index + 1);
 
 	} // showNextQuestion()
 
@@ -111,7 +248,11 @@ function App() {
 			/>
 
 			<Form
-				flashcard={flashcard}
+				answer={answer}
+				message={message}
+				isError={isError}
+				submitForm={submitForm}
+				handleTextChange={handleTextChange}
 			/>
 
 			<div id="buttons">
