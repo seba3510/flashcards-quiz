@@ -141,17 +141,18 @@ form > p {
 	text-align: center;
 }
 
-#message {
+form > p {
 	margin-top: 1em;
 	font-size: 1.5em;
 }
 
-#message.error {
+form > p.error {
 	color: red;
 	border: none;
+	font-size: 2em;
 }
 
-#message.success {
+form > p.success {
 	color: rgb(40, 217, 64);
 }
 

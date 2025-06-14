@@ -40,30 +40,6 @@ function App() {
 
 	//=================================================================
 
-	const [
-		answer,
-		setAnswer
-	] =
-		useState("");
-
-	//=================================================================
-
-	const [
-		message,
-		setMessage
-	] =
-		useState(false);
-
-	//=================================================================
-
-	const [
-		isError,
-		setIsError
-	] =
-		useState(false);
-
-	//=================================================================
-
 	let flashcard =
 		flashcards[index];
 
@@ -117,106 +93,6 @@ function App() {
 
 	//=================================================================
 
-	function isPresent() {
-
-		const isValuePresent =
-			answer != "";
-
-		if (!isValuePresent) {
-
-			setIsError(true);
-
-			const err =
-				"Please answer the question.";
-
-			throw new Error(err);
-
-		} // if
-
-		return true;
-
-	} // value()
-
-	//=================================================================
-
-	function isCorrect() {
-
-		const flashCardAnswer =
-			flashcard.answer;
-
-		const isAnswerCorrect =
-			(answer === flashCardAnswer);
-
-		let message = "";
-
-		if (!isAnswerCorrect) {
-
-			setIsError(true);
-
-			message =
-				"The answer is incorrect!";
-
-			throw new Error(message);
-
-		} // if
-
-	} // isAnswerCorrect()
-
-	//=================================================================
-
-	function handleTextChange(event) {
-
-		const value =
-			event.target.value;
-
-		setAnswer(value);
-
-	} // handleTextChange()
-
-	//=================================================================
-
-	function isDataValid() {
-
-		console.log(answer);
-
-		// setAnswer(inputValue);
-
-		const isAnswerPresent =
-			isPresent();
-
-		const isAnswerCorrect =
-			isCorrect();
-
-		const isValid =
-			isAnswerPresent &&
-			isAnswerCorrect;
-
-		return isValid;
-
-	} // isDataValid()
-
-	//=================================================================
-
-
-	function submitForm(event) {
-
-		event.preventDefault();
-
-		if (isDataValid()) {
-
-			const msg =
-				"The answer is correct.";
-
-			setMessage(msg);
-
-		} // if
-
-
-
-	} // submitForm()
-
-	//=================================================================
-
 	return (
 
 		<main>
@@ -232,17 +108,11 @@ function App() {
 				answer={flashcard.answer}
 				image={flashcard.image}
 				flip={flipCard}
-			>
-			</Card>
+			/>
 
 			<Form
-				answer={answer}
-				message={message}
-				isError={isError}
-				submitForm={submitForm}
-				onChange={handleTextChange}
-			>
-			</Form>
+				flashcard={flashcard}
+			/>
 
 			<div id="buttons">
 				<button

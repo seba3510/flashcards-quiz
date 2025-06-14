@@ -19,12 +19,13 @@ function Card(
 
 		<div className="card" onClick={flip}>
 			<Question
-				question={question}></Question>
+				question={question}
+			/>
+
 			<Answer
 				answer={answer}
 				image={image}
-			>
-			</Answer>
+			/>
 
 		</div>
 
