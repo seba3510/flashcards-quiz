@@ -1,80 +1,16 @@
-import { useState } from "react";
-
-//================================================================================
-
-function Form({ flashcard }) {
-
-	const [
-		inputValue,
-		setInputValue
-	] =
-		useState("");
-
-	//================================================================================
-
-	const input =
-		document.querySelector
-			("input");
-
-	//================================================================================
-
-	function validateForm(event) {
-
-		event.preventDefault();
-
-		const userAnswer =
-			input.value.trim();
-
-		setInputValue(userAnswer);
-
-		const answer =
-			flashcard.answer;
-
-		const isAnswerCorrect =
-			(inputValue === answer);
-
-		const para =
-			document.querySelector
-				("#message");
-
-		const card =
-			document.querySelector
-				(".card");
-
-		let message = "";
-
-		alert(inputValue);
-
-		if (isAnswerCorrect) {
-
-			message =
-				"The answer is correct!"
-
-			para.textContent =
-				message;
-
-			input.classList.
-				toggle("success");
-
-			para.classList.
-				toggle("success");
-
-			card.classList.
-				toggle("show");
-
-		} // if
-
-
-
-	} // validateForm()
-
-	//================================================================================
-
-
+function Form(
+	{
+		answer,
+		error: message,
+		isError,
+		submitForm,
+		onChange }) {
 
 	return (
 
-		<form onSubmit={validateForm}>
+
+
+		<form onSubmit={submitForm}>
 
 			<div id="input-container">
 
@@ -83,6 +19,8 @@ function Form({ flashcard }) {
 					id="guess"
 					name="guess"
 					placeholder="Type your answer here"
+					value={answer}
+					onChange={onChange}
 				>
 				</input>
 				<button
@@ -93,7 +31,11 @@ function Form({ flashcard }) {
 
 			</div>
 
-			<p id="message"></p>
+			{isError
+				? <p className="error">{message}</p>
+				: <p className="success">{message}</p>
+			}
+
 
 		</form>
 

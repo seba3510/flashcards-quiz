@@ -147,7 +147,7 @@ form > p {
 }
 
 #message.error {
-	color: white;
+	color: red;
 	border: none;
 }
 
@@ -157,4 +157,8 @@ form > p {
 
 input.success {
 	border: 2px solid green;
+}
+
+input.error {
+	border: 2px solid red;
 }

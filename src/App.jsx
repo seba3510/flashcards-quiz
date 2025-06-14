@@ -10,11 +10,7 @@ import { Header } from "./components/Header.jsx";
 
 //========================================================
 
-import { Question } from "./components/Question.jsx";
-
-//========================================================
-
-import { Answer } from "./components/Answer.jsx";
+import { Card } from "./components/Card.jsx";
 
 //========================================================
 
@@ -44,7 +40,31 @@ function App() {
 
 	//=================================================================
 
-	let curr =
+	const [
+		answer,
+		setAnswer
+	] =
+		useState("");
+
+	//=================================================================
+
+	const [
+		message,
+		setMessage
+	] =
+		useState(false);
+
+	//=================================================================
+
+	const [
+		isError,
+		setIsError
+	] =
+		useState(false);
+
+	//=================================================================
+
+	let flashcard =
 		flashcards[index];
 
 	//=================================================================
@@ -97,85 +117,107 @@ function App() {
 
 	//=================================================================
 
-	// function validateForm(event) {
+	function isPresent() {
 
-	// 	event.preventDefault();
+		const isValuePresent =
+			answer != "";
 
-	// 	const input =
-	// 		document.querySelector
-	// 			("input");
+		if (!isValuePresent) {
 
-	// 	const value =
-	// 		input.value.trim();
+			setIsError(true);
 
-	// 	const selector =
-	// 		"#message";
+			const err =
+				"Please answer the question.";
 
-	// 	const para =
-	// 		document.querySelector
-	// 			(selector);
+			throw new Error(err);
 
-	// 	const isPresent =
-	// 		value != "";
+		} // if
 
-	// 	let message = "";
+		return true;
 
-	// 	if (!isPresent) {
+	} // value()
 
-	// 		message =
-	// 			"The value is missing!";
+	//=================================================================
 
-	// 		input.classList.
-	// 			toggle("error");
+	function isCorrect() {
 
-	// 		para.textContent =
-	// 			message;
+		const flashCardAnswer =
+			flashcard.answer;
 
-	// 		// clearText();
+		const isAnswerCorrect =
+			(answer === flashCardAnswer);
 
-	// 	} // if
+		let message = "";
+
+		if (!isAnswerCorrect) {
+
+			setIsError(true);
+
+			message =
+				"The answer is incorrect!";
+
+			throw new Error(message);
+
+		} // if
+
+	} // isAnswerCorrect()
+
+	//=================================================================
+
+	function handleTextChange(event) {
+
+		const value =
+			event.target.value;
+
+		setAnswer(value);
+
+	} // handleTextChange()
+
+	//=================================================================
+
+	function isDataValid() {
+
+		console.log(answer);
+
+		// setAnswer(inputValue);
+
+		const isAnswerPresent =
+			isPresent();
+
+		const isAnswerCorrect =
+			isCorrect();
+
+		const isValid =
+			isAnswerPresent &&
+			isAnswerCorrect;
+
+		return isValid;
+
+	} // isDataValid()
+
+	//=================================================================
 
 
-	// 	const isAnswerCorrect =
-	// 		(value === curr.answer);
+	function submitForm(event) {
 
-	// 	if (!isAnswerCorrect) {
+		event.preventDefault();
 
-	// 		message =
-	// 			"Incorrect answer!";
+		if (isDataValid()) {
 
-	// 		para.textContent =
-	// 			message;
+			const msg =
+				"The answer is correct.";
 
-	// 	} // if
+			setMessage(msg);
 
-	// 	else {
-
-	// 		message =
-	// 			"The answer is correct!";
-
-
-	// 		para.textContent =
-	// 			message;
-
-	// 		input.classList.
-	// 			toggle("success");
-
-	// 		para.classList.
-	// 			toggle("success");
-
-	// 		card.classList.toggle("show");
+		} // if
 
 
 
-	// 	} // if
-
-	// } // validateForm()
+	} // submitForm()
 
 	//=================================================================
 
 	return (
-
 
 		<main>
 
@@ -185,18 +227,21 @@ function App() {
 				Question {index + 1} of {numQuestions}
 			</h3>
 
-			<div className="card" onClick={flipCard}>
-				<Question
-					question={curr.question}>
-				</Question>
-				<Answer
-					answer={curr.answer}
-					image={curr.image}>
-				</Answer>
-			</div>
+			<Card
+				question={flashcard.question}
+				answer={flashcard.answer}
+				image={flashcard.image}
+				flip={flipCard}
+			>
+			</Card>
 
 			<Form
-				flashcard={curr}>
+				answer={answer}
+				message={message}
+				isError={isError}
+				submitForm={submitForm}
+				onChange={handleTextChange}
+			>
 			</Form>
 
 			<div id="buttons">

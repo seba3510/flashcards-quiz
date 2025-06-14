@@ -6,25 +6,26 @@ import { Answer } from "./Answer.jsx";
 
 //========================================================
 
-function Card
-	(
-		{
-			question,
-			answer,
-			image
-		}
-	) {
+function Card(
+	{
+		question,
+		answer,
+		image,
+		flip
+	}
+) {
 
 	return (
 
-		<div className="card">
+		<div className="card" onClick={flip}>
 			<Question
-				question={question}>
-			</Question>
+				question={question}></Question>
 			<Answer
 				answer={answer}
-				image={image}>
+				image={image}
+			>
 			</Answer>
+
 		</div>
 
 	);
