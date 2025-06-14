@@ -16,8 +16,6 @@ function Form(
 					placeholder="Type your answer here"
 					value={answer}
 					onChange={handleTextChange}
-					className={(isError) ? "error"
-						: answer ? "success" : ""}
 				/>
 				<button
 					type="submit"

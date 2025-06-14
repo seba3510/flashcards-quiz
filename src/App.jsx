@@ -65,11 +65,11 @@ function App() {
 
 	//=================================================================
 
-	const [
-		isFlipped,
-		setIsFlipped
-	] =
-		useState(false);
+	// const [
+	// 	isFlipped,
+	// 	setIsFlipped
+	// ] =
+	// 	useState(false);
 
 	//=================================================================
 
@@ -88,6 +88,12 @@ function App() {
 	const card =
 		document.querySelector
 			(".card");
+
+	//=================================================================
+
+	const nextBtn =
+		document.querySelector
+			("next-btn");
 
 	//=================================================================
 
@@ -134,7 +140,8 @@ function App() {
 			input.classList.
 				toggle("error");
 
-			para.classList.toggle("error");
+			para.classList.
+				toggle("error");
 
 			const error =
 				"Please answer the question!";
@@ -153,7 +160,7 @@ function App() {
 			setIsError(true);
 
 			const error =
-				"The answer is wrong!";
+				"The answer is wrong! Try again!";
 
 			setMessage(error);
 
@@ -168,12 +175,13 @@ function App() {
 			const msg =
 				"The answer is correct!";
 
-
 			setMessage(msg);
 
-			// card.classList.remove("show");
+			input.classList.
+				toggle("success");
 
-			card.classList.toggle("show");
+			card.classList.
+				remove("show");
 
 		} // else
 
@@ -194,28 +202,17 @@ function App() {
 
 	function showNextQuestion() {
 
-		if (!isFlipped) {
+		setIndex(index + 1);
 
-			setIsError(true);
+		para.textContent = "";
 
-			const error =
-				"Flip the card before moving on to " +
-				"the next question.";
+		input.classList.
+			remove("success");
 
-			para.classList.toggle("error");
+		card.classList.
+			remove("show");
 
-			para.textContent =
-				error;
-
-
-		} // if
-
-		// card.classList.
-		// 	remove("show");
-
-		// input.textContent = "";
-
-		// setIndex(index + 1);
+		setAnswer("");
 
 	} // showNextQuestion()
 
@@ -244,7 +241,6 @@ function App() {
 				question={flashcard.question}
 				answer={flashcard.answer}
 				image={flashcard.image}
-				flip={flipCard}
 			/>
 
 			<Form

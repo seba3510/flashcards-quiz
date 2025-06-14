@@ -11,21 +11,20 @@ function Card(
 		question,
 		answer,
 		image,
-		flip
 	}
 ) {
 
 	return (
 
-		<div className="card" onClick={flip}>
+		<div className="card">
 			<Question
 				question={question}
 			/>
-
 			<Answer
 				answer={answer}
 				image={image}
 			/>
+
 
 		</div>
 
