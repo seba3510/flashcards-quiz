@@ -6,19 +6,24 @@ import { Answer } from "./Answer.jsx";
 
 //========================================================
 
-function Card({ question, answer, image }) {
+function Card
+	(
+		{
+			question,
+			answer,
+			image
+		}
+	) {
 
 	return (
 
 		<div className="card">
 			<Question
-				question={question}
-			>
+				question={question}>
 			</Question>
 			<Answer
 				answer={answer}
-				image={image}
-			>
+				image={image}>
 			</Answer>
 		</div>
 

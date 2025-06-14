@@ -56,7 +56,7 @@ main > h3 {
 .card-back {
 	display: grid;
 	position: absolute;
-	border: 5px solid #000000;
+	border: 5px solid black;
 	padding: 0.5em;
 	inset: 0;
 	place-content: center;
@@ -96,6 +96,10 @@ main > h3 {
 	text-align: center;
 }
 
+button {
+	cursor: pointer;
+}
+
 .prev-btn,
 .continue-btn {
 	cursor: pointer;
@@ -125,4 +129,32 @@ label {
 
 .error {
 	border: 2px solid red;
+}
+
+#input-container {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+}
+
+form > p {
+	text-align: center;
+}
+
+#message {
+	margin-top: 1em;
+	font-size: 1.5em;
+}
+
+#message.error {
+	color: white;
+	border: none;
+}
+
+#message.success {
+	color: rgb(40, 217, 64);
+}
+
+input.success {
+	border: 2px solid green;
 }

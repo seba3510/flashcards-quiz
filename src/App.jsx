@@ -2,7 +2,7 @@ import { useState } from "react";
 
 //========================================================
 
-import { flashcards } from "./data/flaschards.js";
+import { flashcards } from "./data/flashcards.js";
 
 //========================================================
 
@@ -68,8 +68,8 @@ function App() {
 
 	function showPreviousQuestion() {
 
-		card.classList.
-			remove("show");
+		// card.classList.
+		// 	remove("show");
 
 		setIndex(index - 1);
 
@@ -79,8 +79,8 @@ function App() {
 
 	function showNextQuestion() {
 
-		card.classList
-			.remove("show");
+		// card.classList.
+		// 	remove("show");
 
 		setIndex(index + 1);
 
@@ -90,146 +90,146 @@ function App() {
 
 	function flipCard() {
 
-
-		card.classList
-			.toggle("show");
+		card.classList.
+			toggle("show");
 
 	} // flipCard()
 
 	//=================================================================
 
-	function submitForm(event) {
+	// function validateForm(event) {
 
-		event.preventDefault();
+	// 	event.preventDefault();
 
-		const input =
-			document.querySelector
-				("input");
+	// 	const input =
+	// 		document.querySelector
+	// 			("input");
 
-		const value =
-			input.value;
+	// 	const value =
+	// 		input.value.trim();
 
-		const selector =
-			"form > p";
+	// 	const selector =
+	// 		"#message";
 
-		const para =
-			document.querySelector
-				(selector);
+	// 	const para =
+	// 		document.querySelector
+	// 			(selector);
 
-		const isAnswerCorrect =
-			(value === curr.answer);
+	// 	const isPresent =
+	// 		value != "";
 
-		let message = "";
+	// 	let message = "";
 
-		if (!isAnswerCorrect) {
+	// 	if (!isPresent) {
 
-			input.classList.
-				toggle("error");
+	// 		message =
+	// 			"The value is missing!";
 
-			message =
-				"The answer is wrong!";
+	// 		input.classList.
+	// 			toggle("error");
 
-			para.textContent =
-				message;
+	// 		para.textContent =
+	// 			message;
 
-		} // if
+	// 		// clearText();
 
-		else {
-
-			message =
-				"The answer is correct.";
-
-			para.textContent =
-				message;
-
-		} // else
+	// 	} // if
 
 
+	// 	const isAnswerCorrect =
+	// 		(value === curr.answer);
 
-		// const value =
-		// 	input.value;
+	// 	if (!isAnswerCorrect) {
 
-		// const isAnswerCorrect =
-		// 	(value === curr.answer);
+	// 		message =
+	// 			"Incorrect answer!";
 
-		// const msg1 =
-		// 	"The answer is correct.";
+	// 		para.textContent =
+	// 			message;
 
-		// const msg2 =
-		// 	"The answer is incorrect.";
+	// 	} // if
 
-		// isAnswerCorrect ? alert(msg1)
-		// 	: alert(msg2);
+	// 	else {
 
-	} // submitForm()
+	// 		message =
+	// 			"The answer is correct!";
+
+
+	// 		para.textContent =
+	// 			message;
+
+	// 		input.classList.
+	// 			toggle("success");
+
+	// 		para.classList.
+	// 			toggle("success");
+
+	// 		card.classList.toggle("show");
+
+
+
+	// 	} // if
+
+	// } // validateForm()
 
 	//=================================================================
 
 	return (
 
-		<>
-			<main>
 
-				<Header></Header>
+		<main>
 
-				<h3>
-					Question {index + 1} of {numQuestions}
-				</h3>
+			<Header></Header>
 
-				<div className="card" onClick={flipCard}>
-					<Question question={curr.question}></Question>
-					<Answer
-						answer={curr.answer}
-						image={curr.image}></Answer>
-				</div>
+			<h3>
+				Question {index + 1} of {numQuestions}
+			</h3>
 
-				<form onSubmit={submitForm}>
-					<label for="guess">
-						Guess the answer here:
-					</label>
-					<input type="text" id="guess" name="guess"></input>
-					<button
-						type="submit"
-						id="submit-btn"
-					>Submit Guess</button>
+			<div className="card" onClick={flipCard}>
+				<Question
+					question={curr.question}>
+				</Question>
+				<Answer
+					answer={curr.answer}
+					image={curr.image}>
+				</Answer>
+			</div>
 
-					<p></p>
+			<Form
+				flashcard={curr}>
+			</Form>
 
-				</form>
+			<div id="buttons">
+				<button
+					onClick={showPreviousQuestion}
+					disabled={(!hasPrev)}
+					className="prev-btn"
+				>
+					{(hasPrev) &&
+						<img
+							src={leftArrow}
+							alt="This is an arrow that points to the left.">
+						</img>
+					}
+				</button>
 
-				<div id="buttons">
-					<button
-						onClick={showPreviousQuestion}
-						disabled={(!hasPrev)}
-						className="prev-btn"
-					>
-						{(hasPrev) &&
-							<img
-								src={leftArrow}
-								alt="This is an arrow that points to the left.">
-							</img>
-						}
-					</button>
+				<button
+					onClick={showNextQuestion}
+					disabled={(!hasNext)}
+					className="continue-btn"
+				>
+					{(hasNext) &&
+						<img
+							src={rightArrow}
+							alt="This is an arrow that points to the right."
+						>
+						</img>
+					}
+				</button>
 
-					<button
-						onClick={showNextQuestion}
-						disabled={(!hasNext)}
-						className="continue-btn"
-					>
-						{(hasNext) &&
-							<img
-								src={rightArrow}
-								alt="This is an arrow that points to the right."
-							>
-							</img>
-						}
-					</button>
+			</div>
 
-				</div>
-
-			</main>
-
-		</>
+		</main>
 
 	);
 
