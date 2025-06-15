@@ -4,7 +4,7 @@ Submitted by: **Sebastián L. Corporán Berríos**
 
 This web app: **tests the user's knowledge on the series "Cobra Kai". There are 13 questions, each one will be displayed in a flashcard format. Below the flashcard, the user enters the answer. If such answer is wrong, a hint is given, otherwise, it displays a message that confirms that the answer was correct. This web app also has a button that shuffles the cards. It also keeps track of the user's current streak, and the user's longest streak. If the user guesses an answer incorrectly, the counter resets to 0.**
 
-Time spent: **30** hours spent in total
+Time spent: **20** hours spent in total
 
 ## Required Features
 
