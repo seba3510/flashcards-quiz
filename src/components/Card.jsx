@@ -25,7 +25,6 @@ function Card(
 				image={image}
 			/>
 
-
 		</div>
 
 	);

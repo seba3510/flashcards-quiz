@@ -65,14 +65,6 @@ function App() {
 
 	//=================================================================
 
-	// const [
-	// 	isFlipped,
-	// 	setIsFlipped
-	// ] =
-	// 	useState(false);
-
-	//=================================================================
-
 	const para =
 		document.querySelector
 			("form > p");
@@ -154,13 +146,8 @@ function App() {
 			input.classList.
 				remove("success");
 
-			// para.classList.
-			// 	remove("hint");
-
 			const hint =
 				`Hint: ${flashcard.hint}`;
-
-			// para.classList.remove("success");
 
 			para.classList.
 				add("hint");
@@ -180,7 +167,6 @@ function App() {
 
 			setMessage(msg);
 
-			// Remove previous classes
 			input.classList
 				.remove("success");
 
@@ -208,9 +194,6 @@ function App() {
 	//=============================================================
 
 	function showPreviousQuestion() {
-
-		// card.classList.
-		// 	remove("show");
 
 		setIndex(index - 1);
 
