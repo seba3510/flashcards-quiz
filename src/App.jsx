@@ -67,6 +67,14 @@ function App() {
 
 	//=================================================================
 
+	const [
+		areShuffled,
+		setAreShuffled
+	] =
+		useState(false);
+
+	//=================================================================
+
 	const para =
 		document.querySelector
 			("form > p");
@@ -102,6 +110,12 @@ function App() {
 	//=================================================================
 
 	function handleTextChange(event) {
+
+		input.classList.
+			remove("success");
+
+		input.classList.
+			remove("error");
 
 		const value =
 			event.target.value;
@@ -181,13 +195,13 @@ function App() {
 			setMessage(msg);
 
 			input.classList
-				.add("success");
+				.toggle("success");
 
 			para.classList.
-				add("success");
+				toggle("success");
 
 			card.classList.
-				add("success");
+				toggle("success");
 
 		} // else
 
@@ -197,7 +211,32 @@ function App() {
 
 	function showPreviousQuestion() {
 
-		setIndex(index - 1);
+		if (areShuffled) {
+
+			setIndex(index - 1);
+
+			para.textContent = "";
+
+			input.classList.
+				remove("success");
+
+			card.classList.
+				remove("show");
+
+			setAnswer("");
+
+		} //  if
+
+		else {
+
+			const randomIndex =
+				getRandomIndex();
+
+			setIndex(randomIndex);
+
+			setAnswer("");
+
+		} // else
 
 	} // showPreviousQuestion()
 
@@ -205,20 +244,73 @@ function App() {
 
 	function showNextQuestion() {
 
-		setIndex(index + 1);
+		if (areShuffled) {
 
-		para.textContent = "";
+			setIndex(index + 1);
 
-		input.classList.
-			remove("success");
+			para.textContent = "";
 
-		card.classList.
-			remove("show");
+			input.classList.
+				remove("success");
 
-		setAnswer("");
+			card.classList.
+				remove("show");
+
+			setAnswer("");
+
+		} // if
+
+		else {
+
+			const randomIndex =
+				getRandomIndex();
+
+			setIndex(randomIndex);
+
+			setAnswer("");
+
+		} // else
 
 	} // showNextQuestion()
 
+	//=================================================================
+
+	function getRandomIndex() {
+
+		const min = 0;
+
+		const max =
+			numQuestions - 1;
+
+		const minCeiled =
+			Math.ceil(min);
+
+		const maxFloored =
+			Math.floor(max);
+
+		const randomIndex =
+			Math.floor(
+				Math.random() *
+				(maxFloored - minCeiled + 1)
+				+ minCeiled
+			);
+
+		return randomIndex;
+
+	} // getRandomIndex()
+
+	//=================================================================
+
+	function shuffleCards() {
+
+		const randomIndex =
+			getRandomIndex();
+
+		setIndex(randomIndex);
+
+		areShuffled(true);
+
+	} // shuffleCards()
 
 	//=================================================================
 
@@ -274,7 +366,9 @@ function App() {
 					}
 				</button>
 
-				<button id="shuffle-cards-btn">
+				<button
+					id="shuffle-cards-btn"
+					onClick={shuffleCards}>
 					<img
 						src={shuffleArrow}
 						alt="Shuffle Cards"
@@ -283,7 +377,7 @@ function App() {
 
 			</div>
 
-		</main >
+		</main>
 
 	);
 
