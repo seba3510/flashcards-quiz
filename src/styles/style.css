@@ -149,11 +149,12 @@ form > p {
 form > p.error {
 	color: red;
 	border: none;
-	font-size: 2em;
+	font-size: 2.5em;
 }
 
 form > p.success {
 	color: rgb(40, 217, 64);
+	font-size: 2.5em;
 }
 
 input.success {
@@ -162,4 +163,9 @@ input.success {
 
 input.error {
 	border: 2px solid red;
+}
+
+form > p.hint {
+	color: white;
+	font-size: 2.5em;
 }

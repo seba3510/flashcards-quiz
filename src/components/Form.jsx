@@ -24,11 +24,12 @@ function Form(
 					Submit Answer
 				</button>
 			</div>
-			{(isError) ?
-				<p className="error">{message}</p>
-				:
-				<p className="success">{message}</p>}
-		</form>
+			<p className={(isError) ? "error"
+				: (message === "The answer is correct!")
+					? "success" : ""}>
+				{message}
+			</p>
+		</form >
 	);
 } // Form()
 

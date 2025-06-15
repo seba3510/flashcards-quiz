@@ -91,12 +91,6 @@ function App() {
 
 	//=================================================================
 
-	const nextBtn =
-		document.querySelector
-			("next-btn");
-
-	//=================================================================
-
 	let flashcard =
 		flashcards[index];
 
@@ -157,12 +151,21 @@ function App() {
 
 		if (!areAnswersEqual) {
 
-			setIsError(true);
+			input.classList.
+				remove("success");
 
-			const error =
-				"The answer is wrong! Try again!";
+			// para.classList.
+			// 	remove("hint");
 
-			setMessage(error);
+			const hint =
+				`Hint: ${flashcard.hint}`;
+
+			// para.classList.remove("success");
+
+			para.classList.
+				add("hint");
+
+			setMessage(hint);
 
 			para.textContent = "";
 
@@ -177,11 +180,26 @@ function App() {
 
 			setMessage(msg);
 
-			input.classList.
-				toggle("success");
+			// Remove previous classes
+			input.classList
+				.remove("success");
+
+			para.classList
+				.remove("success");
+
+			card.classList
+				.remove("success");
+
+			setMessage(msg);
+
+			input.classList
+				.add("success");
+
+			para.classList.
+				add("success");
 
 			card.classList.
-				remove("show");
+				add("success");
 
 		} // else
 
@@ -216,14 +234,6 @@ function App() {
 
 	} // showNextQuestion()
 
-	//=================================================================
-
-	function flipCard() {
-
-		card.classList.
-			toggle("show");
-
-	} // flipCard()
 
 	//=================================================================
 

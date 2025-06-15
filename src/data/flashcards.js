@@ -5,8 +5,9 @@ import { images } from "./images";
 const flashcards = [
 	{
 		image: images[0],
-		question: "What is Johnny Lawrence doing for work in Season 1?",
-		answer: "Handyman",
+		question: "Prior to 1984, how many All Valley Tournaments had Johnny won?",
+		answer: "Two",
+		hint: "It's more than one."
 	},
 	{
 		image: images[1],
