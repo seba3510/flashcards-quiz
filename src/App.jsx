@@ -105,24 +105,6 @@ function App() {
 
 	//=================================================================
 
-	// const para =
-	// 	document.querySelector
-	// 		("form > p");
-
-	//=================================================================
-
-	// const input =
-	// 	document.querySelector
-	// 		("input");
-
-	//=================================================================
-
-	// const card =
-	// 	document.querySelector
-	// 		(".card");
-
-	//=================================================================
-
 	let flashcard =
 		flashcards[index];
 
@@ -192,12 +174,7 @@ function App() {
 			const hint =
 				`Hint: ${flashcard.hint}`;
 
-			// para.classList.
-			// 	add("hint");
-
 			setMessage(hint);
-
-			// para.textContent = "";
 
 		} // if
 

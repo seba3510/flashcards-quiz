@@ -1,8 +1,6 @@
 function Question({ question }) {
 
-
 	return (
-
 
 		<div className="card-front">
 			<p className="question">

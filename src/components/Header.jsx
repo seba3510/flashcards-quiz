@@ -15,8 +15,6 @@ function Header() {
 			<p>Number of cards: {numQuestions}</p>
 		</header>
 
-
-
 	);
 
 } // Header()
