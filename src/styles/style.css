@@ -68,10 +68,6 @@ main > h3 {
 	padding: 1em;
 }
 
-/* .card-front {
-	height: 100%;
-} */
-
 .card-front {
 	background-color: rgba(68, 65, 65, 0.307);
 	filter: blur(1.5px);
@@ -82,7 +78,6 @@ main > h3 {
 	flex-direction: column;
 	align-items: center;
 	background-color: aliceblue;
-	/* transform: rotateY(180deg); */
 	rotate: y 180deg;
 }
 
@@ -108,7 +103,8 @@ button {
 }
 
 .continue-btn > img,
-.prev-btn > img {
+.prev-btn > img,
+#shuffle-cards-btn > img {
 	width: 200px;
 }
 
@@ -168,4 +164,12 @@ input.error {
 form > p.hint {
 	color: white;
 	font-size: 2.5em;
+}
+
+#shuffle-cards-btn {
+	height: 10%;
+	font-size: 1em;
+	margin-right: 2em;
+	border: none;
+	background-color: transparent;
 }

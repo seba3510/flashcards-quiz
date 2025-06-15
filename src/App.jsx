@@ -27,6 +27,8 @@ import rightArrow from "./assets/images/right-arrow.svg";
 
 //========================================================
 
+import shuffleArrow from "./assets/images/shuffle-arrows.png";
+
 import "./styles/style.css";
 
 //========================================================
@@ -272,9 +274,16 @@ function App() {
 					}
 				</button>
 
+				<button id="shuffle-cards-btn">
+					<img
+						src={shuffleArrow}
+						alt="Shuffle Cards"
+					/>
+				</button>
+
 			</div>
 
-		</main>
+		</main >
 
 	);
 
