@@ -227,6 +227,8 @@ function App() {
 
 		else {
 
+			setAreShuffled(true);
+
 			const randomIndex =
 				getRandomIndex();
 

@@ -39,6 +39,7 @@ The following **additional** features are implemented:
 
 -   Restricted the user from clicking the card.
 -   Instead of flipping the card to display the answer, the answer was displayed in a paragraph below the form.
+-   Display a hint to the user for every question that was guessed incorrectly.
 
 ## Video Walkthrough
 
