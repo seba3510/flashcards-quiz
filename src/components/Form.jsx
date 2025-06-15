@@ -3,6 +3,7 @@ function Form(
 		answer,
 		message,
 		isError,
+		status,
 		submitForm,
 		handleTextChange
 	}) {
@@ -16,6 +17,7 @@ function Form(
 					placeholder="Type your answer here"
 					value={answer}
 					onChange={handleTextChange}
+					className={status}
 				/>
 				<button
 					type="submit"

@@ -29,6 +29,12 @@ import rightArrow from "./assets/images/right-arrow.svg";
 
 import shuffleArrow from "./assets/images/shuffle-arrows.png";
 
+//========================================================
+
+import { Counter } from "./components/Counter.jsx";
+
+//========================================================
+
 import "./styles/style.css";
 
 //========================================================
@@ -68,6 +74,14 @@ function App() {
 	//=================================================================
 
 	const [
+		status,
+		setStatus
+	] =
+		useState("");
+
+	//=================================================================
+
+	const [
 		areShuffled,
 		setAreShuffled
 	] =
@@ -75,21 +89,37 @@ function App() {
 
 	//=================================================================
 
-	const para =
-		document.querySelector
-			("form > p");
+	const [
+		currentStreak,
+		setCurrentStreak
+	] =
+		useState(0);
 
 	//=================================================================
 
-	const input =
-		document.querySelector
-			("input");
+	const [
+		longestStreak,
+		setLongestStreak
+	] =
+		useState(0);
 
 	//=================================================================
 
-	const card =
-		document.querySelector
-			(".card");
+	// const para =
+	// 	document.querySelector
+	// 		("form > p");
+
+	//=================================================================
+
+	// const input =
+	// 	document.querySelector
+	// 		("input");
+
+	//=================================================================
+
+	// const card =
+	// 	document.querySelector
+	// 		(".card");
 
 	//=================================================================
 
@@ -111,11 +141,7 @@ function App() {
 
 	function handleTextChange(event) {
 
-		input.classList.
-			remove("success");
-
-		input.classList.
-			remove("error");
+		setStatus("");
 
 		const value =
 			event.target.value;
@@ -139,11 +165,7 @@ function App() {
 
 			setIsError(true);
 
-			input.classList.
-				toggle("error");
-
-			para.classList.
-				toggle("error");
+			setStatus("error");
 
 			const error =
 				"Please answer the question!";
@@ -159,18 +181,23 @@ function App() {
 
 		if (!areAnswersEqual) {
 
-			input.classList.
-				remove("success");
+			setLongestStreak
+				(currentStreak);
+
+			setCurrentStreak
+				(0);
+
+			setStatus("error")
 
 			const hint =
 				`Hint: ${flashcard.hint}`;
 
-			para.classList.
-				add("hint");
+			// para.classList.
+			// 	add("hint");
 
 			setMessage(hint);
 
-			para.textContent = "";
+			// para.textContent = "";
 
 		} // if
 
@@ -178,30 +205,30 @@ function App() {
 
 			setIsError(false);
 
+			setStatus("success");
+
 			const msg =
 				"The answer is correct!";
 
 			setMessage(msg);
 
-			input.classList
-				.remove("success");
+			setAnswer("");
 
-			para.classList
-				.remove("success");
+			const newStreak =
+				currentStreak + 1;
 
-			card.classList
-				.remove("success");
+			setCurrentStreak
+				(newStreak);
 
-			setMessage(msg);
+			const isLongesStreakBeat =
+				(newStreak > longestStreak);
 
-			input.classList
-				.toggle("success");
+			if (isLongesStreakBeat) {
 
-			para.classList.
-				toggle("success");
+				setLongestStreak
+					(newStreak);
 
-			card.classList.
-				toggle("success");
+			} // if
 
 		} // else
 
@@ -213,15 +240,9 @@ function App() {
 
 		if (areShuffled) {
 
+			setAreShuffled(false);
+
 			setIndex(index - 1);
-
-			para.textContent = "";
-
-			input.classList.
-				remove("success");
-
-			card.classList.
-				remove("show");
 
 			setAnswer("");
 
@@ -246,15 +267,9 @@ function App() {
 
 		if (areShuffled) {
 
+			setAreShuffled(false);
+
 			setIndex(index + 1);
-
-			para.textContent = "";
-
-			input.classList.
-				remove("success");
-
-			card.classList.
-				remove("show");
 
 			setAnswer("");
 
@@ -308,7 +323,7 @@ function App() {
 
 		setIndex(randomIndex);
 
-		areShuffled(true);
+		setAreShuffled(true);
 
 	} // shuffleCards()
 
@@ -324,6 +339,11 @@ function App() {
 				Question {index + 1} of {numQuestions}
 			</h3>
 
+			<Counter
+				currentStreak={currentStreak}
+				longestStreak={longestStreak}
+			/>
+
 			<Card
 				question={flashcard.question}
 				answer={flashcard.answer}
@@ -334,6 +354,7 @@ function App() {
 				answer={answer}
 				message={message}
 				isError={isError}
+				status={status}
 				submitForm={submitForm}
 				handleTextChange={handleTextChange}
 			/>
